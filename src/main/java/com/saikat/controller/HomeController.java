@@ -19,27 +19,45 @@
 
 package com.saikat.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
-import com.saikat.model.Link;
+import com.saikat.ShortnerService.ShortnerService;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private ShortnerService shortnerService;
     
 	@RequestMapping("/")
-    public String  helloService(Model m){
+    public String  home(Model m){
 		//Link link = new Link();
         //m.addAttribute("link", link);
 		return "index";
     }
 	
+	//Controller for converting Long URL to Short
 	@RequestMapping("show")
-	public String saveCustomer(@RequestParam("longUrl") String longUrl,Model m) {
-		 m.addAttribute("link", longUrl);
+	public String ShortUrl(@RequestParam("longUrl") String longUrl,Model m) {
+		String ShortUrl = shortnerService.LongToShort(longUrl);
+		 m.addAttribute("link", ShortUrl);
 		return "index";
+	}
+	
+	//Controller for fetching & Redirecting to Actual Long URL.
+	@RequestMapping("/{link}")
+	public RedirectView  redirectToOriginalUrl(@PathVariable String link) {
+		//String longUrl = shortnerService.ShortToLong(link);
+		
+	    RedirectView redirectView = new RedirectView();
+	    redirectView.setUrl("https://www.google.com");
+		return redirectView;
 	}
 
 }
