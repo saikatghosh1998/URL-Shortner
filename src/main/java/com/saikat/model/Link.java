@@ -1,9 +1,25 @@
 package com.saikat.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="urldetails")
 public class Link {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="id")
 	private int key;
+	
+	@Column(name ="shortUrl")
 	private String shortUrl;
+	
+	@Column(name ="longUrl")
 	private String longUrl;
 	
 	public int getKey() {
