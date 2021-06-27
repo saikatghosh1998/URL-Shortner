@@ -27,7 +27,8 @@ public class HomeController {
 	@RequestMapping("show")
 	public String ShortUrl(@RequestParam("longUrl") String longUrl,Model m) {
 		String ShortUrl = shortnerService.LongToShort(longUrl);
-		 m.addAttribute("link", ShortUrl);
+		String surl = "http://localhost:8080/Url/"+ShortUrl;
+		 m.addAttribute("link", surl);
 		return "index";
 	}
 	
