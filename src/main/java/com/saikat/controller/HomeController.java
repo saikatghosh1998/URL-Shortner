@@ -27,9 +27,9 @@ public class HomeController {
 	@RequestMapping("show")
 	public String ShortUrl(@RequestParam("longUrl") String longUrl,Model m) {
 		String ShortUrl = shortnerService.LongToShort(longUrl);
-		String surl = "http://localhost:8080/Url/"+ShortUrl;
+		String surl = "bitzy.in/"+ShortUrl;
 		 m.addAttribute("link", surl);
-		return "index";
+		return "result";
 	}
 	
 	//Controller for fetching & Redirecting to Actual Long URL.

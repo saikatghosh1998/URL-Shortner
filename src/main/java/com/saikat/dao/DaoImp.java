@@ -37,15 +37,13 @@ public class DaoImp implements Dao {
 	@Transactional
 	public Link getLink(String Link) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		//Link l  =currentSession.get(Link.class,8);
-		Query query=currentSession.createQuery("from Link where shortUrl= :shortUrl or longUrl= :shortUrl");
+		Query query=currentSession.createQuery("from Link where shortUrl= :shortUrl");
 	    query.setParameter("shortUrl", Link);
 		List<Link> link = query.getResultList();
 		Link l = new Link();
 		try {
 			l = link.get(0);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

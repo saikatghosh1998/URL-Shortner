@@ -22,14 +22,8 @@ public class ShortnerServiceImpl implements ShortnerService{
 	//Function to Convert Long URL to Short
 	public String LongToShort(String longUrl) {
 		
-		Link link = new Link();
-		link  = dao.getLink(longUrl);
-		String shortUrl = "";
-		
-		//checking if LONG URL already exist in DB
-		//if long URL is not present in DB then convert it to short URL
-		//if(link.getShortUrl() == null) {
-		
+			Link link = new Link();
+			String shortUrl = "";		
 		
 			link.setLongUrl(longUrl);              //setting the long url in LINK object
 			int id = dao.saveLink(link);           //saving the long url in db and getting the row id.
@@ -39,13 +33,8 @@ public class ShortnerServiceImpl implements ShortnerService{
 			link.setShortUrl(shortUrl);            //setting the short url in LINK object.
 			
 			dao.update(link);                      //Updating short URL in DB.
-			return shortUrl;
 			
-		//}
-//		else { //If URL exist, return the short URL.
-//			String shortUrl = link.getShortUrl();
-//			return "Link already exist: "+shortUrl;
-//		}
+			return shortUrl;
 			
 		
 	}
@@ -56,7 +45,7 @@ public class ShortnerServiceImpl implements ShortnerService{
 		 link  = dao.getLink(shortUrl);		
 		
 		return link.getLongUrl();
-		//return "https://www.google.com";
+		//return "https://www.example.com";
 	}
 	
 	

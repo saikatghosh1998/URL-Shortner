@@ -54,7 +54,8 @@ public class DemoAppConfig implements  WebMvcConfigurer{
 		
 		//Setting jdbc driver
 		try {
-			securityDataSource.setDriverClass("com.mysql.jdbc.Driver");
+			//securityDataSource.setDriverClass("com.mysql.jdbc.Driver");
+			securityDataSource.setDriverClass(env.getProperty("jdbc.driver"));
 		}catch(PropertyVetoException ex) {
 			throw new RuntimeException(ex);
 		}

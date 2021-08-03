@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="urldetails")
+@Table(name="url_table")
 public class Link {
 	
 	@Id
